@@ -1,13 +1,10 @@
 package model;
-import jdk.jfr.DataAmount;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
-import static util.DateUtil.dateToString;
 
 @Data
 @AllArgsConstructor

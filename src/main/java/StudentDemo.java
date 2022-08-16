@@ -4,10 +4,14 @@ import model.Lesson;
 import model.Student;
 import model.User;
 import model.UserType;
+import org.apache.commons.compress.archivers.dump.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Workbook;
 import storage.LessonList;
 import storage.StudentList;
 import storage.UserList;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -86,6 +90,9 @@ public class StudentDemo implements Commands {
                 case PRINT_ALL_LESSONS:
                     LessonList.printArray();
                     break;
+                case DOWNLOAD_STUDENTS_EXCEL:
+                    downloadStudentExcel();
+                    break;
                 default:
                     System.out.println("Invalid command ");
                     break;
@@ -133,10 +140,23 @@ public class StudentDemo implements Commands {
                 case PRINT_ALL_LESSONS:
                     LessonList.printArray();
                     break;
+                case DOWNLOAD_STUDENTS_EXCEL:
+                    downloadStudentExcel();
+                    break;
                 default:
                     System.out.println("Invalid command ");
                     break;
             }
+        }
+    }
+
+    private static void downloadStudentExcel() {
+        System.out.println("Please input file location ");
+        String filDir = scanner.nextLine();
+        try {
+            StudentList.writeStudentsToExcel(filDir);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
